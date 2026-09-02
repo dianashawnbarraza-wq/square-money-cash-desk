@@ -86,7 +86,7 @@ function Blast({ children, ok = true }: { children: React.ReactNode; ok?: boolea
 
 function MoveTaxSheet() {
   const { state, closeSheet, confirmTax, watch } = useMoney();
-  const [raw, setRaw] = useState(String(TAX_SWEEP_DEFAULT));
+  const [raw, setRaw] = useState(new Intl.NumberFormat("en-US").format(TAX_SWEEP_DEFAULT));
   const amount = clampAmount(parseAmount(raw));
   const after = state.checking - amount;
   const covered = after >= PAYROLL_AMOUNT;
@@ -102,7 +102,7 @@ function MoveTaxSheet() {
         </div>
         <Blast ok={covered}>
           Checking after move: {money(after)} · Payroll Fri needs {money(PAYROLL_AMOUNT)}{" "}
-          {covered ? "· covered" : "· not covered"}
+          {covered ? "✓ covered" : "· not covered"}
         </Blast>
         <p className="text-[13px] text-muted">
           Nothing moves until you confirm. You can undo for 30 seconds.
@@ -133,7 +133,9 @@ function MoveTaxSheet() {
 
 function MayaCapSheet() {
   const { state, closeSheet, confirmMaya } = useMoney();
-  const [raw, setRaw] = useState(String(state.mayaCap ?? MAYA_CAP_DEFAULT));
+  const [raw, setRaw] = useState(
+    new Intl.NumberFormat("en-US").format(state.mayaCap ?? MAYA_CAP_DEFAULT),
+  );
   const amount = clampAmount(parseAmount(raw));
   const remaining = Math.max(0, amount - MAYA_USED);
 

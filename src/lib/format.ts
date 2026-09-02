@@ -26,3 +26,15 @@ export function clampAmount(n: number): number {
   if (!Number.isFinite(n) || n < 0) return 0;
   return Math.round(n * 100) / 100;
 }
+
+export function formatAmountInput(raw: string): string {
+  const cleaned = raw.replace(/[^0-9.]/g, "");
+  if (!cleaned) return "";
+  const [whole, fraction] = cleaned.split(".");
+  const n = Number.parseInt(whole || "0", 10);
+  const formatted = new Intl.NumberFormat("en-US").format(Number.isFinite(n) ? n : 0);
+  if (cleaned.includes(".")) {
+    return `${formatted}.${(fraction ?? "").slice(0, 2)}`;
+  }
+  return formatted;
+}

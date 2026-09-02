@@ -258,7 +258,7 @@ export const SEED_APPROVALS: Approval[] = [
     createdOrder: 2,
     tag: "Tax Reserve",
     tone: "grow",
-    title: "Sweep $2,000 to Tax Savings",
+    title: "Sweep leftover to Tax Savings",
     amountLabel: "$2,000",
     why: "Leftover after this week bills. 3.5% APY. Nothing moves until you confirm.",
     evidence: [
@@ -275,7 +275,7 @@ export const SEED_APPROVALS: Approval[] = [
     createdOrder: 3,
     tag: "Card Guard",
     tone: "learn",
-    title: "Cap Maya's debit at $1,000/mo",
+    title: "Cap Maya's debit",
     amountLabel: "$1,000/mo",
     why: "Maya is $640 this week under the proposed cap. Over-cap routes here.",
     evidence: [
@@ -294,7 +294,7 @@ export const CHASE_OAK_APPROVAL: Approval = {
   createdOrder: 4,
   tag: "Invoice Chase",
   tone: "learn",
-  title: "Nudge Oak Street for $4,200",
+  title: "Nudge Oak Street",
   amountLabel: "$4,200",
   why: "Net-30 sent Aug 5. If it lands before Friday, payroll can stay in Checking.",
   evidence: [

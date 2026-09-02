@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { formatAmountInput } from "@/lib/format";
 import type { TagTone } from "@/lib/types";
 
 export function cn(...parts: Array<string | false | null | undefined>) {
@@ -135,7 +136,7 @@ export function AmountField({
           id={id}
           inputMode="decimal"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(formatAmountInput(e.target.value))}
           className="w-full bg-transparent text-[28px] font-medium tabular-nums text-ink outline-none"
         />
         {suffix ? <span className="text-[14px] text-muted">{suffix}</span> : null}
