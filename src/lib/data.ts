@@ -167,12 +167,12 @@ export const TRANSACTIONS: Transaction[] = [
     confirmSupplies: true,
   },
   {
-    id: "zelle-1",
+    id: "bill-dumpster",
     date: "Yesterday",
-    name: "Zelle · Mike Ruiz (helper)",
-    method: "Checking",
+    name: "A-1 Dumpster",
+    method: "Bill pay",
     amount: -180,
-    category: "Labor",
+    category: "Job costs",
   },
   {
     id: "ferguson-card",

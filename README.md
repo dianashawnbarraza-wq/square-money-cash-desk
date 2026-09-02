@@ -37,6 +37,7 @@ Refresh resets seed data. State lives in memory for the click-through.
 - **Approvals holds the dashboard energy.** Named seller scopes (Payroll Watch, Tax Reserve, Card Guard), evidence strips, primary + secondary CTAs.
 - **Trust copy on every ACT.** From / to, blast radius, "nothing moves until you confirm," Undo on money movement.
 - **Tone.** Square seller: second person, lead with the number, plain words. No hype, no exclamation points, no em dashes.
+- **Money-out levers.** Bill Pay (vendor bill → category), Square Payroll, debit/credit cards, and Transfer between Square Checking and Savings (including Tax Savings). Deposit for money in. Instant P2P send is not a Square Checking rail.
 - **Tokens.** Page `#FAFAFA`, surface `#FFFFFF`, ink `#1A1A1A`, muted `#757575`, line `#E5E5E5`. Square blue `#006AFF` for Learn / links only. Primary buttons near-black. Inter. Cards 12px. Buttons pill. Sidebar 240px.
 
 Seed balances and Friday payroll live in `src/lib/data.ts`. Interactive state is `src/lib/store.tsx`.
