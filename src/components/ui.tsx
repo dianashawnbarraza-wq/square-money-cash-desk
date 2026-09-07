@@ -6,11 +6,19 @@ export function cn(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
 
-export function Tag({ tone, children }: { tone: TagTone; children: ReactNode }) {
-  const styles: Record<TagTone, string> = {
+export function Tag({
+  tone = "neutral",
+  children,
+}: {
+  tone?: TagTone | "neutral";
+  children: ReactNode;
+}) {
+  const styles: Record<TagTone | "neutral", string> = {
     watch: "bg-watch-bg text-watch-fg",
     grow: "bg-grow-bg text-grow-fg",
     learn: "bg-learn-bg text-learn-fg",
+    act: "bg-act-bg text-act-fg ring-1 ring-inset ring-square/35",
+    neutral: "bg-tag text-ink",
   };
   return (
     <span

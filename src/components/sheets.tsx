@@ -76,7 +76,7 @@ function Blast({ children, ok = true }: { children: React.ReactNode; ok?: boolea
     <p
       className={cn(
         "rounded-[10px] px-3.5 py-3 text-[13px] leading-relaxed",
-        ok ? "bg-[#F4F4F4] text-ink" : "bg-[#FDECEC] text-[#8A1F1F]",
+        ok ? "bg-[#F4F4F4] text-ink" : "bg-[#F4F4F4] text-ink ring-1 ring-inset ring-ink/20",
       )}
     >
       {children}

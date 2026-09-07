@@ -1,4 +1,4 @@
-export type TagTone = "watch" | "grow" | "learn";
+export type TagTone = "watch" | "grow" | "learn" | "act";
 
 export type ApprovalStatus = "open" | "watching" | "confirmed" | "dismissed";
 

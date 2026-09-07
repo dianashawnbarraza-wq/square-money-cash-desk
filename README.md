@@ -38,6 +38,7 @@ Refresh resets seed data. State lives in memory for the click-through.
 - **Trust copy on every ACT.** From / to, blast radius, "nothing moves until you confirm," Undo on money movement.
 - **Tone.** Square seller: second person, lead with the number, plain words. No hype, no exclamation points, no em dashes.
 - **Money-out levers.** Bill Pay (vendor bill → category), Square Payroll, debit/credit cards, and Transfer between Square Checking and Savings (including Tax Savings). Deposit for money in. Instant P2P send is not a Square Checking rail.
-- **Tokens.** Page `#FAFAFA`, surface `#FFFFFF`, ink `#1A1A1A`, muted `#757575`, line `#E5E5E5`. Square blue `#006AFF` for Learn / links only. Primary buttons near-black. Inter. Cards 12px. Buttons pill. Sidebar 240px.
+- **Chrome is monochrome Square Banking.** Page `#FAFAFA`, surface `#FFFFFF`, ink `#1A1A1A`, muted `#757575`, line `#E5E5E5`. Primary buttons near-black. Inter. Cards 12px. Buttons pill. Sidebar 240px. No extra hue on nav, headers, evidence, or status chips.
+- **Color lives only on Approvals semantic pills.** Watch peach `#F8E7C1`/`#C47B17`, Grow green `#D4F0E4`/`#005E5E`, Learn soft blue `#E5F1FF`/`#006AFF`, Act Square blue `#006AFF`. Text links also use `#006AFF`. Do not gray these tags.
 
 Seed balances and Friday payroll live in `src/lib/data.ts`. Interactive state is `src/lib/store.tsx`.

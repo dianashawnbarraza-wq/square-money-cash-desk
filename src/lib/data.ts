@@ -274,7 +274,7 @@ export const SEED_APPROVALS: Approval[] = [
     id: "maya-cap",
     createdOrder: 3,
     tag: "Card Guard",
-    tone: "learn",
+    tone: "act",
     title: "Cap Maya's debit",
     amountLabel: "$1,000/mo",
     why: "Maya is $640 this week under the proposed cap. Over-cap routes here.",

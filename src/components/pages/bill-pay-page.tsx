@@ -4,12 +4,6 @@ import { BILLS } from "@/lib/data";
 import { money } from "@/lib/format";
 import { Card, PageIntro, Tag } from "../ui";
 
-const tone = {
-  scheduled: "watch" as const,
-  due: "learn" as const,
-  paid: "grow" as const,
-};
-
 export function BillPayPage() {
   return (
     <div>
@@ -27,7 +21,7 @@ export function BillPayPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Tag tone={tone[bill.status]}>
+              <Tag>
                 {bill.status === "scheduled"
                   ? "Scheduled"
                   : bill.status === "due"

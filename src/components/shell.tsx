@@ -110,7 +110,7 @@ function NavLinks({
             onClick={onNavigate}
             className={cn(
               "flex items-center gap-3 rounded-[10px] px-3 py-2 text-[14px] transition-colors",
-              active ? "bg-[#EAF3FF] text-ink" : "text-[#444] hover:bg-[#F2F2F2]",
+              active ? "bg-tag text-ink" : "text-[#444] hover:bg-[#F2F2F2]",
             )}
           >
             <span className={active ? "text-ink" : "text-muted"}>
