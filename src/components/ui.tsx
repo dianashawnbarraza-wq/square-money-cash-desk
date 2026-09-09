@@ -1,76 +1,10 @@
 import type { ReactNode } from "react";
 import { formatAmountInput } from "@/lib/format";
 import type { TagTone } from "@/lib/types";
+import { Button, Pill, cn } from "@/ds";
 
-export function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(" ");
-}
-
-export function Tag({
-  tone = "neutral",
-  children,
-}: {
-  tone?: TagTone | "neutral";
-  children: ReactNode;
-}) {
-  const styles: Record<TagTone | "neutral", string> = {
-    watch: "bg-watch-bg text-watch-fg",
-    grow: "bg-grow-bg text-grow-fg",
-    learn: "bg-learn-bg text-learn-fg",
-    act: "bg-act-bg text-act-fg ring-1 ring-inset ring-square/35",
-    neutral: "bg-tag text-ink",
-  };
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-[12px] font-medium tracking-[0.01em]",
-        styles[tone],
-      )}
-    >
-      {children}
-    </span>
-  );
-}
-
-export function Button({
-  children,
-  variant = "primary",
-  type = "button",
-  disabled,
-  className,
-  onClick,
-}: {
-  children: ReactNode;
-  variant?: "primary" | "secondary" | "ghost" | "link";
-  type?: "button" | "submit";
-  disabled?: boolean;
-  className?: string;
-  onClick?: () => void;
-}) {
-  const variants = {
-    primary:
-      "bg-ink text-white hover:bg-[#2b2b2b] disabled:bg-[#c8c8c8] disabled:text-white",
-    secondary:
-      "bg-surface text-ink border border-ink/80 hover:bg-[#f4f4f4] disabled:opacity-40",
-    ghost: "bg-transparent text-ink hover:bg-[#f0f0f0]",
-    link: "bg-transparent text-square px-0 h-auto rounded-none hover:underline",
-  };
-  return (
-    <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      className={cn(
-        "inline-flex h-10 items-center justify-center rounded-full px-4 text-[14px] font-medium transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30",
-        variants[variant],
-        className,
-      )}
-    >
-      {children}
-    </button>
-  );
-}
+export { Button, cn };
+export { Pill as Tag };
 
 export function Card({
   children,
@@ -100,7 +34,7 @@ export function EvidenceStrip({
   rows: { label: string; value: string; hint?: string }[];
 }) {
   return (
-    <ul className="overflow-hidden rounded-[10px] bg-[#F4F4F4]">
+    <ul className="overflow-hidden rounded-[10px] bg-fill">
       {rows.map((row, i) => (
         <li
           key={`${row.label}-${i}`}
@@ -111,9 +45,9 @@ export function EvidenceStrip({
         >
           <span className="min-w-0 text-muted">
             {row.label}
-            {row.hint ? <span className="text-muted/80"> · {row.hint}</span> : null}
+            {row.hint ? <span className="text-faint"> · {row.hint}</span> : null}
           </span>
-          <span className="shrink-0 tabular-nums text-ink">{row.value}</span>
+          <span className="shrink-0 tabular-nums text-emphasis">{row.value}</span>
         </li>
       ))}
     </ul>
@@ -138,14 +72,14 @@ export function AmountField({
   return (
     <label htmlFor={id} className="block">
       <span className="mb-2 block text-[13px] text-muted">{label}</span>
-      <div className="flex items-center gap-2 rounded-[12px] border border-line bg-page px-4 py-3 focus-within:border-ink">
+      <div className="flex items-center gap-2 rounded-card border border-line bg-page px-4 py-3 focus-within:border-emphasis">
         {prefix ? <span className="text-[28px] font-medium text-muted">{prefix}</span> : null}
         <input
           id={id}
           inputMode="decimal"
           value={value}
           onChange={(e) => onChange(formatAmountInput(e.target.value))}
-          className="w-full bg-transparent text-[28px] font-medium tabular-nums text-ink outline-none"
+          className="w-full bg-transparent text-[28px] font-medium tabular-nums text-emphasis outline-none"
         />
         {suffix ? <span className="text-[14px] text-muted">{suffix}</span> : null}
       </div>
@@ -165,7 +99,7 @@ export function PageIntro({
   return (
     <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div>
-        <h1 className="text-[28px] font-medium tracking-tight text-ink sm:text-[32px]">
+        <h1 className="text-[28px] font-medium tracking-tight text-emphasis sm:text-[32px]">
           {title}
         </h1>
         {kicker ? <p className="mt-1 text-[14px] text-muted">{kicker}</p> : null}
@@ -174,3 +108,5 @@ export function PageIntro({
     </header>
   );
 }
+
+export type { TagTone };

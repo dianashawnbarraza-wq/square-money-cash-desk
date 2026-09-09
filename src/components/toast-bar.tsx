@@ -22,7 +22,7 @@ export function ToastBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-4">
-      <div className="flex w-full max-w-md items-center gap-3 rounded-[14px] bg-ink px-4 py-3 text-white shadow-lg">
+      <div className="flex w-full max-w-md items-center gap-3 rounded-[14px] bg-emphasis px-4 py-3 text-white shadow-lg">
         <p className="flex-1 text-[13px] leading-snug">
           {state.toast?.message ?? state.undo?.label}
           {state.undo ? (

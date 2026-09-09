@@ -38,7 +38,7 @@ export function WalletPage() {
                 </div>
               </div>
               {isMaya ? (
-                <div className="mt-4 rounded-[10px] bg-[#F4F4F4] px-3.5 py-3">
+                <div className="mt-4 rounded-[10px] bg-fill px-3.5 py-3">
                   {cap != null ? (
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-[13px] text-ink">

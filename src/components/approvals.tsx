@@ -36,7 +36,12 @@ export function ApprovalCard({
       return;
     }
     if (item.id === "tax-sweep") {
-      openSheet("move-tax");
+      watch(
+        "tax-sweep",
+        "Watching through Friday",
+        "Nothing moved. We'll bring this back after payroll if leftover is still there.",
+        "Watching through Friday. Nothing moved.",
+      );
       return;
     }
     if (item.id === "maya-cap") {
@@ -110,5 +115,5 @@ export function ApprovalCard({
   );
 
   if (!framed) return <div>{inner}</div>;
-  return <Card className={cn(resolved && "bg-[#FBFBFB]")}>{inner}</Card>;
+  return <Card className={cn(resolved && "bg-page")}>{inner}</Card>;
 }

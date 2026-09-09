@@ -11,7 +11,7 @@ import {
 } from "@/lib/data";
 import { money, signedMoney } from "@/lib/format";
 import { useMoney } from "@/lib/store";
-import { ApprovalCard } from "../approvals";
+import { Row } from "@/ds";
 import { Button, Card } from "../ui";
 
 export function OverviewPage() {
@@ -24,30 +24,16 @@ export function OverviewPage() {
 
   return (
     <div>
-      <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h1 className="text-[32px] font-medium tracking-tight text-ink sm:text-[36px]">
-            {BUSINESS.desk}
-          </h1>
-          <p className="mt-1 text-[14px] text-muted">{BUSINESS.freshness}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Button variant="secondary" onClick={() => openSheet("transfer")}>
-            Transfer
-          </Button>
-          <Button variant="secondary" onClick={() => openSheet("deposit")}>
-            Deposit
-          </Button>
-          <Button variant="secondary" onClick={() => router.push("/bill-pay")}>
-            Upload bill
-          </Button>
-          <Button onClick={() => router.push("/bill-pay")}>Pay</Button>
-        </div>
+      <header className="mb-10">
+        <h1 className="text-[32px] font-medium tracking-tight text-emphasis sm:text-[36px]">
+          {BUSINESS.desk}
+        </h1>
+        <p className="mt-1 text-[14px] text-muted">{BUSINESS.freshness}</p>
       </header>
 
       <section className="mb-12">
         <p className="text-[13px] text-muted">Available to spend</p>
-        <p className="mt-1 text-[56px] font-medium leading-none tracking-tight tabular-nums text-ink sm:text-[64px]">
+        <p className="mt-1 text-[56px] font-medium leading-none tracking-tight tabular-nums text-emphasis sm:text-[64px]">
           {money(state.checking)}
         </p>
         <p className="mt-3 text-[14px] text-muted">Checking · spendable now</p>
@@ -73,29 +59,24 @@ export function OverviewPage() {
 
       <section className="mb-12">
         <p className="text-[13px] text-muted">Today</p>
-        <p className="mt-2 text-[18px] leading-snug text-ink">
+        <p className="mt-2 text-[18px] leading-snug text-emphasis">
           Payroll Friday: covered if Oak Street lands
         </p>
       </section>
 
       <section className="mb-12">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-[16px] font-medium text-ink">Upcoming</h2>
+          <h2 className="text-[16px] font-medium text-emphasis">Upcoming</h2>
           <span className="text-[13px] text-muted">Next 3 outflows</span>
         </div>
         <ul>
           {UPCOMING.map((item) => (
-            <li
-              key={item.id}
-              className="flex items-baseline justify-between gap-4 border-t border-line py-3 first:border-t-0"
-            >
-              <div>
-                <div className="text-[14px] text-ink">{item.name}</div>
-                <div className="text-[13px] text-muted">{item.when}</div>
-              </div>
-              <div className="tabular-nums text-[14px] text-ink">
-                {signedMoney(item.amount)}
-              </div>
+            <li key={item.id}>
+              <Row
+                title={item.name}
+                subtitle={item.when}
+                value={signedMoney(item.amount)}
+              />
             </li>
           ))}
         </ul>
@@ -103,20 +84,17 @@ export function OverviewPage() {
 
       <section className="mb-10">
         {openCount > 0 && firstOpen ? (
-          <Card className="p-5 sm:p-6">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <h2 className="text-[16px] font-medium text-ink">
-                {openCount} need you
-              </h2>
-              <Link href="/approvals" className="text-[14px] text-square hover:underline">
-                Open Approvals
-              </Link>
-            </div>
-            <ApprovalCard item={firstOpen} compact framed={false} />
+          <Card className="flex items-center justify-between gap-4 py-4">
+            <p className="text-[16px] font-medium text-emphasis">
+              {openCount} need you
+            </p>
+            <Link href="/approvals" className="text-[14px] text-link hover:underline">
+              Open Approvals
+            </Link>
           </Card>
         ) : (
           <Card>
-            <h2 className="text-[16px] font-medium text-ink">You&apos;re clear through Friday</h2>
+            <h2 className="text-[16px] font-medium text-emphasis">You&apos;re clear through Friday</h2>
             <p className="mt-2 text-[14px] text-muted">
               Nothing needs a decision before payroll. Checking is {money(state.checking)}.
             </p>
@@ -160,7 +138,7 @@ function QuietStat({
   return (
     <div>
       <div className="text-[13px] text-muted">{label}</div>
-      <div className="mt-1 text-[22px] font-medium tabular-nums tracking-tight text-ink">
+      <div className="mt-1 text-[22px] font-medium tabular-nums tracking-tight text-emphasis">
         {value}
       </div>
       <div className="mt-1 text-[13px] text-muted">{hint}</div>

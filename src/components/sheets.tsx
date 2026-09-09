@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   MAYA_USED,
   OAK_STREET,
@@ -11,6 +11,7 @@ import {
 } from "@/lib/data";
 import { clampAmount, money, parseAmount } from "@/lib/format";
 import { MAYA_CAP_DEFAULT, TAX_SWEEP_DEFAULT, useMoney } from "@/lib/store";
+import { Sheet } from "@/ds";
 import { AmountField, Button, EvidenceStrip, cn } from "./ui";
 import type { PayrollChoice } from "@/lib/types";
 
@@ -23,51 +24,10 @@ function SheetFrame({
   children: React.ReactNode;
   onClose: () => void;
 }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
-
   return (
-    <div className="fixed inset-0 z-40 flex items-end justify-center sm:items-center">
-      <button
-        type="button"
-        className="absolute inset-0 bg-ink/30"
-        aria-label="Close"
-        onClick={onClose}
-      />
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="sheet-title"
-        className="relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-[20px] bg-surface p-5 shadow-2xl sm:max-w-[440px] sm:rounded-[20px] sm:p-6"
-      >
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <h2 id="sheet-title" className="text-[20px] font-medium tracking-tight text-ink">
-            {title}
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-full text-muted hover:bg-[#F2F2F2] hover:text-ink"
-            aria-label="Close"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-              <path d="M6 6l12 12M18 6L6 18" />
-            </svg>
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
+    <Sheet title={title} onClose={onClose}>
+      {children}
+    </Sheet>
   );
 }
 
@@ -76,7 +36,7 @@ function Blast({ children, ok = true }: { children: React.ReactNode; ok?: boolea
     <p
       className={cn(
         "rounded-[10px] px-3.5 py-3 text-[13px] leading-relaxed",
-        ok ? "bg-[#F4F4F4] text-ink" : "bg-[#F4F4F4] text-ink ring-1 ring-inset ring-ink/20",
+        ok ? "bg-fill text-emphasis" : "bg-fill text-emphasis ring-1 ring-inset ring-emphasis/20",
       )}
     >
       {children}
@@ -98,7 +58,7 @@ function MoveTaxSheet() {
         <AmountField id="tax-amount" label="Amount" value={raw} onChange={setRaw} />
         <div className="flex items-center justify-between rounded-[10px] border border-line px-3.5 py-3 text-[13px]">
           <span className="text-muted">From Checking</span>
-          <span className="text-ink">to Tax Savings · {TAX_APY}% APY</span>
+          <span className="text-emphasis">to Tax Savings · {TAX_APY}% APY</span>
         </div>
         <Blast ok={covered}>
           Checking after move: {money(after)} · Payroll Fri needs {money(PAYROLL_AMOUNT)}{" "}
@@ -190,7 +150,7 @@ function PayrollSheet() {
         </p>
         <div className="overflow-hidden rounded-[10px] border border-line">
           <table className="w-full text-left text-[13px]">
-            <thead className="bg-[#F7F7F7] text-muted">
+            <thead className="bg-fill text-muted">
               <tr>
                 <th className="px-3 py-2 font-medium">Item</th>
                 <th className="px-3 py-2 text-right font-medium">Amount</th>
@@ -205,7 +165,7 @@ function PayrollSheet() {
               ].map(([label, amount, hint]) => (
                 <tr key={label} className="border-t border-line">
                   <td className="px-3 py-2.5">
-                    <div className="text-ink">{label}</div>
+                    <div className="text-emphasis">{label}</div>
                     <div className="text-[12px] text-muted">{hint}</div>
                   </td>
                   <td className="px-3 py-2.5 text-right tabular-nums">{amount}</td>
@@ -235,7 +195,7 @@ function PayrollSheet() {
               key={option.id}
               className={cn(
                 "block cursor-pointer rounded-[12px] border px-3.5 py-3",
-                choice === option.id ? "border-ink bg-[#FAFAFA]" : "border-line",
+                choice === option.id ? "border-emphasis bg-page" : "border-line",
               )}
             >
               <input
@@ -245,7 +205,7 @@ function PayrollSheet() {
                 checked={choice === option.id}
                 onChange={() => setChoice(option.id)}
               />
-              <div className="text-[14px] font-medium text-ink">{option.title}</div>
+              <div className="text-[14px] font-medium text-emphasis">{option.title}</div>
               <div className="mt-1 text-[13px] text-muted">{option.body}</div>
             </label>
           ))}

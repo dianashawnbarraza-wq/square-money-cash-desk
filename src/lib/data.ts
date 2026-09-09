@@ -267,7 +267,7 @@ export const SEED_APPROVALS: Approval[] = [
       { label: "Tax folder rule", value: "paused", hint: "last ran Aug 25" },
     ],
     primary: "Move $2,000",
-    secondary: "Edit amount",
+    secondary: "Watch through payroll",
     primarySheet: "move-tax",
   },
   {

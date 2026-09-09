@@ -12,7 +12,7 @@ import { ToastBar } from "./toast-bar";
 function SquareMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden>
-      <rect x="2" y="2" width="28" height="28" rx="7" fill="#1A1A1A" />
+      <rect x="2" y="2" width="28" height="28" rx="7" fill="#101010" />
       <rect x="10" y="10" width="12" height="12" rx="3" fill="#FAFAFA" />
     </svg>
   );
@@ -110,10 +110,10 @@ function NavLinks({
             onClick={onNavigate}
             className={cn(
               "flex items-center gap-3 rounded-[10px] px-3 py-2 text-[14px] transition-colors",
-              active ? "bg-tag text-ink" : "text-[#444] hover:bg-[#F2F2F2]",
+              active ? "bg-fill text-emphasis" : "text-muted hover:bg-fill",
             )}
           >
-            <span className={active ? "text-ink" : "text-muted"}>
+            <span className={active ? "text-emphasis" : "text-muted"}>
               <NavIcon name={item.label} />
             </span>
             <span className="flex-1">{item.label}</span>
@@ -149,7 +149,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Link href="/" className="mb-8 flex items-start gap-2.5 px-2">
           <SquareMark className="mt-0.5 h-7 w-7" />
           <span>
-            <span className="block text-[15px] font-medium leading-tight text-ink">
+            <span className="block text-[15px] font-medium leading-tight text-emphasis">
               {BUSINESS.product}
             </span>
             <span className="block text-[12px] leading-tight text-muted">
@@ -166,7 +166,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line bg-surface/95 px-4 py-3 backdrop-blur md:hidden">
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#F2F2F2]"
+          className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-fill"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -184,7 +184,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </Link>
         <Link
           href="/approvals"
-          className="flex h-10 items-center rounded-full px-3 text-[13px] text-ink"
+          className="flex h-10 items-center rounded-full px-3 text-[13px] text-emphasis"
         >
           {openCount > 0 ? `${openCount} need you` : "Clear"}
         </Link>
